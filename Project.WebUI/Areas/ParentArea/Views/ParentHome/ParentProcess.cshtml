@@ -1,0 +1,70 @@
+﻿@model ParentVM
+
+@{
+    ViewBag.Title = "ParentProcess";
+    Layout = "~/Areas/ParentArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Veli Bilgilendirme Sistemi</h4></center>
+            <br />
+            <center>Merhaba <b>@Model.Parent.Firstname @Model.Parent.Lastname</b> Veli bilgilendirme sistemine hoşgeldiniz.</center>
+            <center>Sorumlu olduğunuz öğrenciler aşağıda listelenmiştir. Lütfen yapmak istediğiniz işlemi seçiniz.</center>
+            <hr />
+        </div>
+
+        <div id="second">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Öğrenci Adı</th>
+                        <th>Öğrenci Soyadı</th>
+                        <th>Okul Numarası</th>
+                        <th>Devamsızlık Bilgisi</th>
+                        <th>Not Bilgisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (Student item in Model.Students)
+                        {
+                            <tr>
+                                <th scope="row">●</th>
+                                <td>@item.Firstname</td>
+                                <td>@item.Lastname</td>
+                                <td>@item.SchoolNumber</td>
+                                <td>@Html.ActionLink("Devamsızlıklar", "ShowDiscontinuity", new {id = item.ID}, new { @class = "btn btn-primary" })</td>
+                                <td>@Html.ActionLink("Notlar", "ShowExamGrade", new {id = item.ID}, new { @class = "btn btn-success" })</td>
+                                
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: auto;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>
+

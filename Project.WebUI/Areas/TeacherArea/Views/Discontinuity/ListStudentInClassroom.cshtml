@@ -1,0 +1,67 @@
+﻿@model ClassroomVM
+
+@{
+    ViewBag.Title = "ListStudentInClassroom";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Devamsızlık İşlemleri</h4></center>
+            <br />
+            <center>Devamsızlık bilgisi kaydetmek için 'Devamsızlık Kaydet' butonuna basınız.</center>
+            <center>Öğrencinin devamsızlıkları hakkında daha fazla bilgi ve devamsızlıkta güncelleme işlemleri için 'Detaylı Bilgi' butonuna basınız.</center>
+            <br />
+        </div>
+
+        <div id="second">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Şube Kodu</th>
+                        <th>Okul Numarası</th>
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Devamsızlık Ekle</th>
+                        <th>Detaylı Bilgi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Student item in Model.Classroom.Students)
+                    {
+                        <tr>
+                            <th scope="row">●</th>
+                            <td>@item.Classroom.Section</td>
+                            <td>@item.SchoolNumber</td>
+                            <td>@item.Firstname</td>
+                            <td>@item.Lastname</td>
+                            <td>@Html.ActionLink("Devamsızlık Ekle", "AddDiscontinuity", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                            <td>@Html.ActionLink("Detaylı Bilgi", "ListStudentDiscontinuity", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: 500px;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>
+

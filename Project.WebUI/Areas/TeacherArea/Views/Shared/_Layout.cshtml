@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="Style..css" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/CustomCSS/NavBarCSS.css" rel="stylesheet" />
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <title>Bilge Koleji WEB Portalı</title>
+</head>
+<body>
+    <nav class="navbar" style="flex-direction: column">
+        <!-- LOGO -->
+        <div><h2>Bilge Koleji</h2></div>
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links">
+            <!-- NAVIGATION MENUS -->
+            <div class="menu">
+            @*<li>@Html.ActionLink("Anasayfa", "HomePage", "Home")</li>*@
+            <li>@Html.ActionLink("Sınav İşlemleri", "ListClassroom", "ExamGrade")</li>
+            <li>@Html.ActionLink("Devamsızlık İşlemleri", "ListClassroom", "Discontinuity")</li>
+            <li>@Html.ActionLink("Duyuru İşlemleri", "ListActiveAnnouncement", "Announcement")</li>
+            <li>@Html.ActionLink("Çıkış Yap", "LogOut", "Home", new { area = "" }, new { })</li>
+
+
+            @*<li><a href="/">Anasayfa</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/">Pricing</a></li>
+                <li><a href="/">Contact</a></li>*@
+
+            </div>
+        </ul>
+    </nav>
+    @RenderBody()
+</body>
+</html>

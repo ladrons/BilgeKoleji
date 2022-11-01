@@ -1,0 +1,41 @@
+﻿@model TeacherVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Bilge Koleji - Öğretmen Giriş</title>
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
+    <link href="~/CustomCSS/LoginPageCSS.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("TeacherLogin", "Home", FormMethod.Post, new { @class = "login-form" }))
+        {
+            <h1>Giriş Yap</h1>
+            <div class="content">
+
+                <h5 style="text-align: center">@ViewBag.noTeacherFound</h5>
+
+                <div class="input-field">
+                    @Html.TextBoxFor(x => x.Teacher.UserName, new { placeholder = "Öğretmen İsmi" })
+                </div>
+                <div class="input-field">
+                    @Html.PasswordFor(x => x.Teacher.Password, new { placeholder = "Şifre" })
+                </div>
+                @Html.ActionLink("Şifremi Unuttum", "ChangePassword", null, new { @class = "link" }) 
+                    <!--ToDo: Şifremi unuttum kısmı düzenleccek.-->
+            </div>
+
+            <div class="action">
+                <button>Giriş Yap</button>
+            </div>
+        }
+    </div>
+</body>

@@ -1,0 +1,85 @@
+﻿@model StudentVM
+
+@{
+    ViewBag.Title = "AddHomework";
+    Layout = "~/Areas/StudentArea/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddHomework", "StudentHome", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container" id="flex">
+        <div id="main">
+
+            <hr />
+
+            <center><h4>Ödev Kayıt İşlemleri</h4></center>
+            <center><h6>Kaydetmek istediğiniz ödevi seçiniz. (Desteklenene dosya uzantıları = docx, xlsx)</h6></center>
+            <center style="color:red">@TempData["Successful"]</center>
+            <center style="color:red">@TempData["MissingFile"]</center>
+            <center style="color:red">@TempData["WrongFile"]</center>
+
+            <div id="second">
+                <div class="col-sm-12">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2"> Ödev Seçiniz.</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                <input type="file" name="homework" class="form-control genislik" />
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> </label>
+                            <div class="col-sm-10" style="display:flex">
+                                <button class="btn btn-success"> Dersi Yükle</button>
+                            </div>
+                        </div>
+
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: initial;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+            margin-bottom: 10px;
+        }
+
+        div#third {
+            width: auto;
+            height: 500px;
+        }
+
+    strong {
+        color: red;
+    }
+
+    .genislik {
+        width: 300px;
+    }
+
+    .areagenislik {
+        width: 1227px;
+        height: 100px;
+    }
+</style>
+

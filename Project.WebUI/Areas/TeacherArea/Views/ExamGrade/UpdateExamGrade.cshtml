@@ -1,0 +1,144 @@
+﻿@model ExamGradeVM
+
+@{
+    ViewBag.Title = "UpdateExamGrade";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.ExamGrade.ID)
+    @Html.HiddenFor(x => x.Student.ID)
+
+    <div class="container" id="flex">
+        <div id="main">
+
+            <hr />
+
+            <center><h4>Sınav İşlemleri</h4></center>
+
+            <div id="second">
+                <div class="col-sm-12">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2"> Öğrenci Adı</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Student.Firstname, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> Öğrenci Soyadı</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Student.Lastname, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> Okul Numarası</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Student.SchoolNumber, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Dersin Adı</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.ExamGrade.LessonName, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">1.Sınav Notu</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.ExamGrade.FirstResult, new { @class = "form-control genislik" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">2.Sınav Notu</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.ExamGrade.SecondResult, new { @class = "form-control genislik" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">3.Sınav Notu</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.ExamGrade.ThirdResult, new { @class = "form-control genislik" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> </label>
+                            <div class="col-sm-10" style="display:flex">
+                                <button class="btn btn-success"> Notları Güncelle</button>
+                            </div>
+                        </div>
+
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $("#divGizle").click(function () {
+        $("#p2").toggle(1000);
+    });
+</script>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: initial;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+            margin-bottom: 10px;
+        }
+
+        div#third {
+            width: auto;
+            height: 500px;
+        }
+
+    strong {
+        padding: 5px;
+    }
+
+    .genislik {
+        width: 300px;
+    }
+</style>

@@ -1,0 +1,83 @@
+﻿@model StudentVM
+
+@{
+    ViewBag.Title = "ShowDiscontinuity";
+    Layout = "~/Areas/StudentArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" id="flex">
+    <div id="main">
+
+        <hr />
+
+        <center><h4>Öğrenci Bilgilendirme Sistemi</h4></center>
+        <center><p>Merhaba <strong>@Model.Student.Firstname @Model.Student.Lastname</strong> Aşağıda bu yıla ait devamsızlık bilgilerin gözükmektedir.</p></center>
+
+        <hr />
+
+        <div id="second">
+            @{
+                if (Model.Absenteeisms.Count == 0)
+                {
+                    <center><strong>Devamsızlık bilgisi bulunmamaktadır.</strong></center>
+                }
+                else
+                {
+                    foreach (Absenteeism item in Model.Absenteeisms)
+                    {
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Devamsızlık Tarihi</th>
+                                    <th>Devamsızlık Sayısı (Gün)</th>
+                                    <th>Devamsızlık Açıklaması</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">●</th>
+                                    <td>@item.StartingDate</td>
+                                    <td>@item.AbsencesCount</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: initial;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+            margin-bottom: 10px;
+        }
+
+        div#third {
+            width: auto;
+            height: 500px;
+        }
+
+    strong {
+        /*color: red;*/
+    }
+
+    .genislik {
+        width: 300px;
+    }
+</style>
+

@@ -1,0 +1,83 @@
+﻿@model DiscontinuityVM
+
+@{
+    ViewBag.Title = "ListStudentDiscontinuity";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Devamsızlık İşlemleri</h4></center>
+            <hr />
+            @*<center>Aşağıda seçili olan sınıftaki bütün öğrencilerin devamsızlık bilgileri görüntülenmektedir. Sadece kendi girdiğiniz devamsızlık bilgilerinde güncelleme yapabilirsiniz.</center>*@
+            <center>Okul Numarası <strong>@Model.Student.SchoolNumber</strong> olan <strong>@Model.Student.Firstname @Model.Student.Lastname</strong> İsimli öğrencinin devamsızlık bilgileri görüntülenmektedir.</center>
+            <br />
+        </div>
+
+        <div id="second">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Devamsızlık Başlangıç Tarihi</th>
+                        <th>Devamsızlık Bitiş Tarihi</th>
+                        <th>Devamsızlık Gün Sayısı</th>
+                        <th>Devamsızlık Türü</th>
+                        <th>Devamsızlık Açıklaması</th>
+                        <th>Devamsızlığı Kaydeden Kullanıcı</th>
+                        <th>Devamsızlık Güncelle</th>
+                        <th>Devamsızlık Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Absenteeism item in Model.Absenteeisms)
+                    {
+                        <tr>
+                            <th scope="row">●</th>
+                            <td>@item.StartingDate.ToShortDateString()</td>
+                            <td>@item.EndingDate.ToShortDateString()</td>
+                            <td>@item.AbsencesCount.ToString()</td>
+                            <td>@item.AbsencesStatus.ToString()</td>
+                            <td>@item.Description</td>
+                            <td>@item.DataEntryPerson</td>
+                            @{
+                                if (item.DataEntryPerson == $"{Model.Teacher.Firstname} {Model.Teacher.Lastname.ToUpper()}")
+                                {
+                                    <td>@Html.ActionLink("Devamsızlığı Güncelle", "UpdateDiscontinuity", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                                    <td>@Html.ActionLink("Devamsızlığı Sil", "DeleteDiscontinuity", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                                }
+                                else
+                                {
+                                    <td><button type="button" class="btn btn-warning" disabled>Devamsızlığı Güncelle</button></td>
+                                    <td><button type="button" class="btn btn-danger" disabled>Devamsızlığı Sil</button></td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <p>Unexcused = Özürsüz devamsızlık</p>
+            <p>Excused = Özürlü devamsızlık</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: 500px;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>
+

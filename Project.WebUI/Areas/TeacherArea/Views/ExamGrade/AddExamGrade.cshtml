@@ -1,0 +1,126 @@
+﻿@model ExamGradeVM
+
+@{
+    ViewBag.Title = "AddExamGrade";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Student.ID)
+
+    <div class="container" id="flex">
+        <div id="main">
+
+            <hr />
+
+            <center><h4>Sınav İşlemleri</h4></center>
+
+            <div id="second">
+                <div class="col-sm-12">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2"> Öğrenci Adı</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Student.Firstname, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> Öğrenci Soyadı</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Student.Lastname, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> Okul Numarası</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Student.SchoolNumber, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Dersin Adı</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.Teacher.Lesson.LessonName, new { @class = "form-control genislik", @disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">1.Sınav Notu</label>
+                            <hr />
+                            <div class="col-sm-10">
+                                @{
+                                    if (Model.ExamGrade.FirstResult != null)
+                                    {
+                                        @Html.TextBoxFor(x => x.ExamGrade.FirstResult, new { @class = "form-control genislik", @disabled = "disabled" })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(x => x.ExamGrade.FirstResult, new { @class = "form-control genislik" })
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2"> </label>
+                            <div class="col-sm-10" style="display:flex">
+                                <button class="btn btn-success"> Not Girişini Kaydet</button>
+                            </div>
+                        </div>
+
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: initial;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+            margin-bottom: 10px;
+        }
+
+        div#third {
+            width: auto;
+            height: 500px;
+        }
+
+    strong {
+        color: red;
+    }
+
+    .genislik {
+        width: 300px;
+    }
+</style>
+

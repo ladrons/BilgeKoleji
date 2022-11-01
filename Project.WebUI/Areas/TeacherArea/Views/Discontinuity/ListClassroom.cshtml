@@ -1,0 +1,69 @@
+﻿@model ClassroomVM
+
+@{
+    ViewBag.Title = "ListClassroom";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Devamsızlık İşlemleri</h4></center>
+            <center style="color:red">@TempData["Successful"]</center>
+
+            <br />
+
+            <center>Merhaba <b>@TempData["ActiveTeacher"]</b> Aşağıda aktif olarak dersine girdiğiniz sınıflar görüntülenmektedir.</center>
+            <center>Lütfen işlem yapmak istediğiniz sınıfın öğrencilerini 'Listele' butonuna tıklayarak görüntüleyiniz.</center>
+
+            <br />
+        </div>
+
+        <div id="second">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Sınıf Numarası</th>
+                        <th>Şube Kodu</th>
+                        <th>Öğrenci Sayısı</th>
+                        <th>Öğrencileri Listele</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (Classroom item in Model.Classrooms)
+                    {
+                        <tr>
+                            <th scope="row">●</th>
+                            <td>@item.Class</td>
+                            <td>@item.Section</td>
+                            <td>@item.Students.Count</td>
+                            <td>@Html.ActionLink("Listele", "ListStudentInClassroom", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: 500px;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>
+
+

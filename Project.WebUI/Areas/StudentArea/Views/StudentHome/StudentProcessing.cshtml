@@ -1,0 +1,45 @@
+﻿@model StudentVM
+
+@{
+    ViewBag.Title = "StudentProcessing";
+    Layout = "~/Areas/StudentArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Öğrenci Bilgilendirme Sistemi</h4></center>
+            <br />
+            <center>Merhaba <strong>@Model.Student.Firstname @Model.Student.Lastname</strong> Öğrenci bilgilendirme sistemine hoşgeldin.</center>
+            <center>Bu kısımda notlarını görüntüleyebilir ya da devamsızlıklarına bakabilirsin.</center>
+            <hr />
+        </div>
+
+        <div id="second">
+            @Html.ActionLink("Devamsızlık Bilgisi", "ShowDiscontinuity", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Sınav Sonuçları", "ShowExamGrade", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Ders Yükle", "AddHomework", null, new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: auto;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+            padding: 10px;
+            text-align: center;
+        }
+</style>
+

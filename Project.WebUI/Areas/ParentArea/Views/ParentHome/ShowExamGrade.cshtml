@@ -1,0 +1,98 @@
+﻿@model ParentVM
+
+@{
+    ViewBag.Title = "ShowExamGrade";
+    Layout = "~/Areas/ParentArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" id="flex">
+    <div id="main">
+
+        <hr />
+
+        <center><h4>Veli Bilgilendirme Sistemi</h4></center>
+        <center><p>Merhaba <strong>@Model.Parent.Firstname @Model.Parent.Lastname.</strong> Aşağıdaki sınav sonuçları <strong>@Model.Student.Firstname @Model.Student.Lastname</strong> isimli öğrenciye aittir. </p></center>
+
+        <hr />
+
+        <div id="second">
+            @{
+                if (Model.ExamGrades.Count == 0)
+                {
+                    <center><strong>Seçili öğrenciye ait not bilgisi henüz bulunmamaktadır.</strong></center>
+                }
+                else
+                {
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Dersi İsmi</th>
+                                <th>1.Sınav Notu</th>
+                                <th>2.Sınav Notu</th>
+                                <th>3.Sınav Notu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ExamGrade examGrade in Model.ExamGrades)
+                            {
+                                <tr>
+                                    <th scope="row">●</th>
+                                    <td>@examGrade.LessonName</td>
+                                    <td>@examGrade.FirstResult</td>
+
+                                    @{
+                                        if (examGrade.SecondResult == null)
+                                        {
+                                            <td>Not Girişi Yapılmamış</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@examGrade.SecondResult</td>
+                                        }
+
+                                        if (examGrade.ThirdResult == null)
+                                        {
+                                            <td>Not Girişi Yapılmamış</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@examGrade.ThirdResult</td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: initial;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+            margin-bottom: 10px;
+        }
+
+        div#third {
+            width: auto;
+            height: 500px;
+        }
+
+    .genislik {
+        width: 300px;
+    }
+</style>

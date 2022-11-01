@@ -1,0 +1,80 @@
+﻿@model ExamGradeVM
+
+@{
+    ViewBag.Title = "ListStudentExamGrade";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Sınav İşlemleri</h4></center>
+            <hr />
+            <center>Okul Numarası <strong>@Model.Student.SchoolNumber</strong> olan <strong>@Model.Student.Firstname @Model.Student.Lastname</strong> İsimli öğrencinin sınav bilgileri görüntülenmektedir.</center>
+            <center>Burada sadece aktif olan dönem için not girişi yapılabilir.</center>
+            <br />
+        </div>
+
+        <div id="second">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ders Adı</th>
+                        <th>1.Sınav notu</th>
+                        <th>2.Sınav notu</th>
+                        <th>3.Sınav notu</th>
+                        <th>Notları Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ExamGrade item in Model.ExamGrades)
+                    {
+                        <tr>
+                            <th scope="row">●</th>
+                            <td>@item.LessonName</td>
+                            <td>@item.FirstResult</td>
+                            @{
+                                if (item.SecondResult == null)
+                                {
+                                    <td>Not Girişi Yapılmadı</td>
+                                }
+                                else
+                                {
+                                    <td>@item.SecondResult</td>
+                                }
+
+                                if (item.ThirdResult == null)
+                                {
+                                    <td>Not Girişi Yapılmadı</td>
+                                }
+                                else
+                                {
+                                    <td>@item.ThirdResult</td>
+                                }
+                            }
+                            <td>@Html.ActionLink("Notları Güncelle", "UpdateExamGrade", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: 500px;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>

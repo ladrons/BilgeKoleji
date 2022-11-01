@@ -1,0 +1,11 @@
+Veritabaný Tablolarý;
+
+- Öðrenci
+- Öðretmen
+- Derslik
+- Ders
+- ÖðreniDersleri
+- Duyuru
+- 
+- 
+- Veli

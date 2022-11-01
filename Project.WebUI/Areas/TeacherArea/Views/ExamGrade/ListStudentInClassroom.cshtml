@@ -1,0 +1,93 @@
+﻿@model ClassroomVM
+
+@{
+    ViewBag.Title = "ListStudentInClassroom";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Sınav İşlemleri</h4></center>
+            <br />
+            <center>Öğrenciye not bilgisi girmek için <strong>'Detaylı Bilgi'</strong> butonuna tıklayınız.</center>
+            <br />
+            <center><h6>'Not Girişi' butonu aktif değil ise ilgili öğrenciye daha önce not girişi yapılmış demektir. Lütfen 'Detaylı Bilgi' butonu üzerinden işlemlere devam ediniz.</h6></center>
+        </div>
+
+        <div id="second">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Şube Kodu</th>
+                        <th>Okul Numarası</th>
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Not Girişi</th>
+                        <th>Detaylı Bilgi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Student student in Model.Classroom.Students)
+                    {
+
+                        <tr>
+                            <th scope="row">●</th>
+                            <td>@student.Classroom.Section</td>
+                            <td>@student.SchoolNumber</td>
+                            <td>@student.Firstname</td>
+                            <td>@student.Lastname</td>
+
+                            @{
+                                List<ExamGrade> activeExams = new List<ExamGrade>();
+
+                                foreach (ExamGrade examGrade in student.ExamGrades)
+                                {
+                                    if (examGrade.SemesterID == Model.Semester.ID)
+                                    {
+                                        activeExams.Add(examGrade);
+                                    }
+
+                                    //if (examGrade.Status != Project.ENTITIES.Enums.DataStatus.Deleted)
+                                    //{
+                                    //    activeExams.Add(examGrade);
+                                    //}
+                                }
+
+                                if (activeExams.Count == 0)
+                                {
+                                    <td>@Html.ActionLink("Not Girişi", "AddExamGrade", new { id = student.ID }, new { @class = "btn btn-success" })</td>
+                                }
+                                else
+                                {
+                                    <td><button type="button" class="btn btn-success" disabled>Not Girişi</button></td>
+                                }
+                            }
+                            <td>@Html.ActionLink("Detaylı Bilgi", "ListStudentExamGrade", new { id = student.ID }, new { @class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: 500px;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>
+

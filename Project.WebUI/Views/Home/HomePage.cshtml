@@ -1,0 +1,99 @@
+﻿@model AnnouncementVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Bilge Koleji Okul Portalı</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body style="background: #58a3e3">
+
+    <center><h2>Bilge Koleji Okul Portalı</h2></center>
+
+        <center><h5 style="color:red">@TempData["confirmLogOut"]</h5></center>
+
+    <div class="container">
+        <section class="ortala">
+            <div class="kolon">
+                @Html.ActionLink("Öğretmen Girişi", "TeacherLogin", null, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Veli Girişi", "ParentLogin", null, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Öğrenci Girişi", "StudentLogin", null, new { @class = "btn btn-success" })
+            </div>
+        </section>
+    </div>
+    <hr />
+    <div class="container">
+        <section class="ortala">
+            <center><h2>Duyurular</h2></center>
+            @{
+                if (Model.Announcements.Count == 0)
+                {
+                    <div class="duyuru">
+                        <center><strong>Şu anda aktif duyuru bulunmamaktadır.</strong></center>
+                    </div>
+                }
+                else
+                {
+                    foreach (Announcement item in Model.Announcements)
+                    {
+                        <div class="deneme" style="background-color: #58a3e3">
+
+                            <br />
+
+                            <div class="duyuru">
+                                <header><h4>@item.Title</h4></header>
+                                <label>@item.Description</label>
+                                <hr />
+                                <footer><i>@item.Writer</i></footer>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </section>
+    </div>
+
+    <link href="~/CustomCSS/HomeCSS.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+</body>
+</html>
+
+<style>
+    .kolon {
+        display: inline-block;
+        padding: 8px;
+    }
+
+    .ortala {
+        text-align: center;
+    }
+
+    .deneme {
+        background-color: aliceblue;
+        padding: 8px;
+        /*display: flex;*/
+        border-radius: 20px;
+        width: auto;
+        height: auto;
+    }
+
+    .duyuru {
+        background-color: aliceblue;
+        border-radius: 20px;
+        padding: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+</style>
+
+@*@Html.ActionLink(item.CategoryName, "ShoppingList", new { categoryID = item.ID }, new { @class = "btn btn-primary" })*@

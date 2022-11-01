@@ -1,0 +1,80 @@
+﻿@model  AnnouncementVM
+
+@{
+    ViewBag.Title = "ListActiveAnnouncement";
+    Layout = "~/Areas/TeacherArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div id="main">
+        <div>
+            <hr />
+            <center><h4>Duyuru İşlemleri</h4></center>
+            <center style="color:red">@TempData["Successful"]</center>
+            <br />
+            <center>Merhaba <b>@Model.Teacher.Firstname @Model.Teacher.Lastname</b> Aşağıda aktif olan duyurularınızı görüntüleyebilirsiniz.</center>
+            <hr />
+        </div>
+
+        <div id="second">
+
+            @{
+                if (Model.Announcements.Count == 0)
+                {
+                    <center><b>Şu anda aktif olan duyurunuz bulunmamaktadır.</b></center>
+                    <br />
+                    <center>@Html.ActionLink("Yeni Duyuru İçin Tıklayınız", "AddAnnouncement", null, new { @class = "btn btn-primary" })</center>
+                    <br />
+                }
+                else
+                {
+                    <center>@Html.ActionLink("Yeni Duyuru İçin Tıklayınız", "AddAnnouncement", null, new { @class = "btn btn-primary" })</center>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Duyuru Başlığı</th>
+                                <th>Duyuru İçeriği</th>
+                                <th>Yayınlayan Öğretmen</th>
+                                <th>Yayınlama Tarihi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (Announcement item in Model.Announcements)
+                                {
+                                    <tr>
+                                        <th scope="row">●</th>
+                                        <td>@item.Title</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Writer</td>
+                                        <td>@item.CreatedDate</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    div {
+    }
+
+        div#main {
+            background-color: aliceblue;
+            margin-top: 10px;
+            width: auto;
+            height: auto;
+        }
+
+        div#second {
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+</style>
+
